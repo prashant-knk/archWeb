@@ -691,8 +691,28 @@ h1, h2, h3, h4, h5, h6 {
     gap: 0.5rem;
 }
 
-.social-links span {
-    color: var(--text-light);
+.social-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--brown-medium);
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+.social-link:hover {
+    color: var(--brown-dark);
+    text-decoration: underline;
+}
+
+.social-link i {
+    font-size: 1rem;
+    color: inherit;
+}
+
+.social-link span {
+    color: inherit;
 }
 
 .contact-form-container {
