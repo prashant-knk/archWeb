@@ -123,3 +123,70 @@ window.addEventListener('load', () => {
     document.body.classList.add('loaded');
 });
 
+// Initialize EmailJS
+(function() {
+    emailjs.init("wlNmTdBaCqgUoZs7D"); // Replace with your EmailJS public key
+})();
+
+// Contact Form Handling
+const contactForm = document.getElementById('contact-form');
+const formMessage = document.getElementById('form-message');
+
+if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        // Get form data
+        const formData = {
+            name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            phone: document.getElementById('phone').value,
+            message: document.getElementById('message').value
+        };
+
+        // Disable submit button
+        const submitButton = contactForm.querySelector('button[type="submit"]');
+        const originalButtonText = submitButton.textContent;
+        submitButton.disabled = true;
+        submitButton.textContent = 'Sending...';
+
+        try {
+            // Send email using EmailJS
+            // Replace these with your EmailJS service ID, template ID, and public key
+            await emailjs.send(
+                'service_kq3aj8n',      // Replace with your EmailJS service ID
+                'template_82xfjuy',     // Replace with your EmailJS template ID
+                {
+                    from_name: formData.name,
+                    from_email: formData.email,
+                    phone: formData.phone || 'Not provided',
+                    message: formData.message
+                }
+            );
+
+            // Show success message
+            formMessage.textContent = 'Thank you! Your message has been sent successfully. We will get back to you soon.';
+            formMessage.className = 'form-message success';
+            
+            // Reset form
+            contactForm.reset();
+            
+            // Hide message after 5 seconds
+            setTimeout(() => {
+                formMessage.style.display = 'none';
+            }, 5000);
+
+        } catch (error) {
+            console.error('Error sending email:', error);
+            
+            // Show error message
+            formMessage.textContent = 'Sorry, there was an error sending your message. Please try again or contact us directly at sales@kalankriti.in';
+            formMessage.className = 'form-message error';
+        } finally {
+            // Re-enable submit button
+            submitButton.disabled = false;
+            submitButton.textContent = originalButtonText;
+        }
+    });
+}
+
