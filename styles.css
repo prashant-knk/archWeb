@@ -35,7 +35,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 1800px;
     margin: 0 auto;
     padding: 0 20px;
 }
@@ -57,9 +57,11 @@ h1, h2, h3, h4, h5, h6 {
     align-items: center;
 }
 
+
 .logo img {
     height: 50px;
-    width: auto;
+    transform: scale(1.4); /* bigger without affecting layout */
+    transform-origin: left center;
     object-fit: contain;
 }
 
@@ -127,8 +129,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .hero-title {
-    font-size: 3.5rem;
-    font-weight: 700;
+    font-size: 3.0rem;
+    font-weight: 600;
     color: var(--brown-dark);
     margin-bottom: 1rem;
     line-height: 1.1;
@@ -164,6 +166,19 @@ h1, h2, h3, h4, h5, h6 {
     background-color: var(--brown-dark);
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(93, 64, 55, 0.4);
+}
+
+.name-logo {
+    display: flex;
+    justify-content: left;
+    align-items: left;
+}
+
+.name-logo img {
+    width: 80%;
+    height: auto;
+    display: block;
+    object-fit: contain;
 }
 
 .hero-image {
