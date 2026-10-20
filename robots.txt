@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /*.pdf$
+
+Sitemap: https://kalankriti.in/sitemap.xml

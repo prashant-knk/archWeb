@@ -19,6 +19,11 @@
     box-sizing: border-box;
 }
 
+/* Images carry width/height attributes (prevents layout shift); keep aspect ratio */
+img {
+    height: auto;
+}
+
 body {
     font-family: 'Inter', sans-serif;
     color: var(--text-dark);
@@ -60,6 +65,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .logo img {
     height: 50px;
+    width: auto;
     transform: scale(1.4); /* bigger without affecting layout */
     transform-origin: left center;
     object-fit: contain;
@@ -840,6 +846,97 @@ h1, h2, h3, h4, h5, h6 {
 .footer p {
     margin: 0.5rem 0;
     color: var(--beige-light);
+}
+
+/* Keyword line inside the hero H1 (keeps the slogan as the visual headline) */
+.hero-kicker {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--brown-light);
+    margin-bottom: 0.75rem;
+    line-height: 1.4;
+}
+
+/* Contact form: optional project type + city */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.form-group select {
+    padding: 0.9rem;
+    border: 2px solid var(--beige-dark);
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    color: var(--text-dark);
+    background-color: var(--white);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group select:focus {
+    outline: none;
+    border-color: var(--brown-medium);
+    box-shadow: 0 0 0 3px rgba(93, 64, 55, 0.1);
+}
+
+/* Floating WhatsApp button */
+.whatsapp-float {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 1100;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.1rem;
+    background-color: #25d366;
+    color: #ffffff;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.whatsapp-float i {
+    font-size: 1.6rem;
+    line-height: 1;
+}
+
+.whatsapp-float:hover,
+.whatsapp-float:focus-visible {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+@media (max-width: 600px) {
+    .whatsapp-float {
+        right: 16px;
+        bottom: 16px;
+        width: 56px;
+        height: 56px;
+        padding: 0;
+        justify-content: center;
+    }
+
+    .whatsapp-float i {
+        font-size: 1.9rem;
+    }
+
+    .whatsapp-float-label {
+        display: none;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* Responsive Design */
