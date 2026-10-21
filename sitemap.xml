@@ -2,9 +2,36 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://kalankriti.in/</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-10-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
     <image:image><image:loc>https://kalankriti.in/images/og-image.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://kalankriti.in/architectural-model-makers-bengaluru/</loc>
+    <lastmod>2026-10-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image><image:loc>https://kalankriti.in/images/portfolio-brigade-eternia-bangalore-1.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://kalankriti.in/architectural-model-makers-hyderabad/</loc>
+    <lastmod>2026-10-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image><image:loc>https://kalankriti.in/images/portfolio-aparna-sunstone-hyderabad.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://kalankriti.in/architectural-model-makers-dubai/</loc>
+    <lastmod>2026-10-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image><image:loc>https://kalankriti.in/images/portfolio-sobha-dubai.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://kalankriti.in/faq/</loc>
+    <lastmod>2026-10-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 </urlset>
