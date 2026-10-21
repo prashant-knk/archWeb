@@ -27,6 +27,8 @@ Subject: New Contact Form Submission from {{from_name}}
 From: {{from_name}}
 Email: {{from_email}}
 Phone: {{phone}}
+Project type: {{project_type}}
+City: {{city}}
 
 Message:
 {{message}}
@@ -37,6 +39,9 @@ This email was sent from the Kala & Kriti website contact form.
 
 4. Set the **To Email** field to: `sales@kalankriti.in`
 5. Note down your **Template ID**
+
+> The form sends `project_type` and `city` (both optional, "Not specified" when empty).
+> If your existing template doesn't include `{{project_type}}` and `{{city}}`, add them or those details won't appear in the email.
 
 ## Step 4: Get Your Public Key
 

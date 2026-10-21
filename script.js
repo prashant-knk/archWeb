@@ -141,7 +141,9 @@ if (contactForm) {
             name: document.getElementById('name').value,
             email: document.getElementById('email').value,
             phone: document.getElementById('phone').value,
-            message: document.getElementById('message').value
+            message: document.getElementById('message').value,
+            project_type: (document.getElementById('project_type') || {}).value || '',
+            city: ((document.getElementById('city') || {}).value || '').trim()
         };
 
         // Disable submit button
@@ -160,26 +162,42 @@ if (contactForm) {
                     from_name: formData.name,
                     from_email: formData.email,
                     phone: formData.phone || 'Not provided',
-                    message: formData.message
+                    message: formData.message,
+                    project_type: formData.project_type || 'Not specified',
+                    city: formData.city || 'Not specified'
                 }
             );
 
+            // Analytics: count the lead (no-op until a GA4 ID is set in index.html)
+            trackEvent('generate_lead', {
+                form_id: 'contact-form',
+                project_type: formData.project_type || 'Not specified',
+                city: formData.city || 'Not specified'
+            });
+
             // Show success message
-            formMessage.textContent = 'Thank you! Your message has been sent successfully. We will get back to you soon.';
+            formMessage.style.display = '';
+            formMessage.textContent = '✓ Thank you' + (formData.name ? ', ' + formData.name.split(' ')[0] : '') +
+                '! Your enquiry has been sent to the Kala & Kriti team. We will get back to you soon at ' + formData.email +
+                '. For a faster reply, call +91 7892083540 or WhatsApp us.';
             formMessage.className = 'form-message success';
+            formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             
             // Reset form
             contactForm.reset();
             
-            // Hide message after 5 seconds
-            setTimeout(() => {
+            // Hide message after 10 seconds
+            clearTimeout(formMessage._hideTimer);
+            formMessage._hideTimer = setTimeout(() => {
                 formMessage.style.display = 'none';
-            }, 5000);
+            }, 10000);
 
         } catch (error) {
             console.error('Error sending email:', error);
             
             // Show error message
+            clearTimeout(formMessage._hideTimer);
+            formMessage.style.display = '';
             formMessage.textContent = 'Sorry, there was an error sending your message. Please try again or contact us directly at sales@kalankriti.in';
             formMessage.className = 'form-message error';
         } finally {
@@ -190,3 +208,36 @@ if (contactForm) {
     });
 }
 
+
+// Footer year (always current)
+(function () {
+    const yearEl = document.getElementById('footer-year');
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
+})();
+
+// Analytics helper: only sends when GA4 is enabled (see KK_GA4_MEASUREMENT_ID in index.html)
+function trackEvent(name, params) {
+    try {
+        if (window.KK_GA4_ENABLED && typeof window.gtag === 'function') {
+            window.gtag('event', name, params || {});
+        }
+    } catch (err) {
+        // Never let analytics break the page
+    }
+}
+
+// Track clicks on phone, email and WhatsApp links
+document.addEventListener('click', (e) => {
+    const link = e.target.closest ? e.target.closest('a[href]') : null;
+    if (!link) return;
+    const href = link.getAttribute('href') || '';
+    const linkLocation = link.classList.contains('whatsapp-float') ? 'floating_button' :
+        (link.closest('#contact') ? 'contact_section' : 'page');
+    if (href.startsWith('tel:')) {
+        trackEvent('click_phone', { link_url: href, link_location: linkLocation });
+    } else if (href.startsWith('mailto:')) {
+        trackEvent('click_email', { link_url: href, link_location: linkLocation });
+    } else if (/^https:\/\/(wa\.me|api\.whatsapp\.com)\//.test(href)) {
+        trackEvent('click_whatsapp', { link_url: href, link_location: linkLocation });
+    }
+});
