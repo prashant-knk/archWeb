@@ -62,26 +62,9 @@
     }
     </script>
 
-    <!-- Google Analytics 4: set the measurement ID in ONE place below.
+    <!-- Google Analytics 4: the measurement ID lives in ONE place, analytics.js (shared by all pages).
          While it is the placeholder 'G-XXXXXXXXXX', nothing is loaded or sent. -->
-    <script>
-        window.KK_GA4_MEASUREMENT_ID = 'G-XXXXXXXXXX'; // <-- PASTE YOUR GA4 MEASUREMENT ID HERE
-        (function (id) {
-            window.dataLayer = window.dataLayer || [];
-            window.gtag = function () { window.dataLayer.push(arguments); };
-            window.KK_GA4_ENABLED = /^G-[A-Z0-9]+$/.test(id) && id !== 'G-XXXXXXXXXX';
-            if (!window.KK_GA4_ENABLED) {
-                window.gtag = function () {}; // placeholder ID: analytics disabled, no-op
-                return;
-            }
-            var s = document.createElement('script');
-            s.async = true;
-            s.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(id);
-            document.head.appendChild(s);
-            gtag('js', new Date());
-            gtag('config', id);
-        })(window.KK_GA4_MEASUREMENT_ID);
-    </script>
+    <script src="analytics.js"></script>
     <link rel="stylesheet" href="styles.css">
     <link rel="preload" as="image" href="images/hero-main.webp" fetchpriority="high">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -697,6 +680,12 @@
     <footer class="footer">
         <div class="container">
             <p>&copy; <span id="footer-year">2024</span> K&K – Kala & Kriti. All rights reserved.</p>
+            <nav class="footer-links" aria-label="Locations and help">
+                <a href="/architectural-model-makers-bengaluru/">Model Makers in Bengaluru</a>
+                <a href="/architectural-model-makers-hyderabad/">Model Makers in Hyderabad</a>
+                <a href="/architectural-model-makers-dubai/">Model Makers in Dubai</a>
+                <a href="/faq/">FAQ</a>
+            </nav>
             <p>www.kalankriti.in</p>
         </div>
     </footer>

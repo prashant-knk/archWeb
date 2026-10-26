@@ -168,7 +168,7 @@ if (contactForm) {
                 }
             );
 
-            // Analytics: count the lead (no-op until a GA4 ID is set in index.html)
+            // Analytics: count the lead (no-op until a GA4 ID is set in analytics.js)
             trackEvent('generate_lead', {
                 form_id: 'contact-form',
                 project_type: formData.project_type || 'Not specified',
@@ -215,7 +215,7 @@ if (contactForm) {
     if (yearEl) yearEl.textContent = new Date().getFullYear();
 })();
 
-// Analytics helper: only sends when GA4 is enabled (see KK_GA4_MEASUREMENT_ID in index.html)
+// Analytics helper: only sends when GA4 is enabled (see KK_GA4_MEASUREMENT_ID in analytics.js)
 function trackEvent(name, params) {
     try {
         if (window.KK_GA4_ENABLED && typeof window.gtag === 'function') {
